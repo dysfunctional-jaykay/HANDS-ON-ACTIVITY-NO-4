@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced CSS Sample Output</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -25,30 +26,115 @@
 </section>
 
 <section class="filter">
-    <h2 class="section-title">
-        CSS Features Demo</h2>
+    <h2 class="section-title">Filter By:</h2>
+    <nav class="filter-nav">
+      <a href="javascript:alert('Not functional');">All</a>
+      <a href="javascript:alert('Not functional');">Laptops</a>
+      <a href="javascript:alert('Not functional');">Headphones</a>
+      <a href="javascript:alert('Not functional');">Accessories</a>
+    </nav>
 </section>
 
 <section class="features">
-  <h2 class="section-title">CSS Features Demo</h2>
+  <h2 class="section-title">Featured Products</h2>
 
   <div class="grid">
-    <div class="card">
-      <h3>Flexbox</h3>
-      <p>Align, center, and distribute space easily with powerful one-dimensional layouts.</p>
+    <div class="card sale">
+      <div class="product-type">
+        <span class="sale-tag">
+          Sale
+        </span>
+        Headset
+      </div>
+      <h3>Noise-Canceling Headphones</h3>
+      <p>
+        Wireless • 30h battery • Fast charge
+      </p>
+      <p>
+        <span class="price">₱ 3,499</span>
+      </p>
+      <p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        (4.8)
+      </p>
+      <button class="btn-purchase">Add to Cart</button>
     </div>
 
     <div class="card">
-      <h3>CSS Grid</h3>
-      <p>Create dynamic two-dimensional layouts with responsive auto-fit columns.</p>
+      <div class="product-type">Headset</div>
+      <h3>Noise-Canceling Headphones</h3>
+      <p>
+        Wireless • 30h battery • Fast charge
+      </p>
+      <p>
+        <span class="price">₱ 3,499</span>
+      </p>
+      <p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        (4.8)
+      </p>
+      <button class="btn-purchase">Add to Cart</button>
     </div>
 
     <div class="card">
-      <h3>CSS Variables</h3>
-      <p>Define theme colors, spacing, and typography that update instantly.</p>
+      <div class="product-type">Headset</div>
+      <h3>Noise-Canceling Headphones</h3>
+      <p>
+        Wireless • 30h battery • Fast charge
+      </p>
+      <p>
+        <span class="price">₱ 3,499</span>
+      </p>
+      <p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        (4.8)
+      </p>
+      <button class="btn-purchase">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <div class="product-type">
+        <span class="low-stock-tag">
+          Low Stock
+        </span>
+        Headset
+      </div>
+      <h3>Noise-Canceling Headphones</h3>
+      <p>
+        Wireless • 30h battery • Fast charge
+      </p>
+      <p>
+        <span class="price">₱ 3,499</span>
+      </p>
+      <p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        (4.8)
+      </p>
+      <button class="btn-purchase">Add to Cart</button>
+      <p style="text-align: right;">Hurry few left in stock!</p>
     </div>
   </div>
 </section>
+
+<footer>
+
+</footer>
 
 <script>
   document.getElementById("toggleTheme").onclick = function () {

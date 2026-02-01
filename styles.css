@@ -84,7 +84,9 @@ body {
 ================================ */
 .hero {
   padding: 2rem;
-  margin: auto 10rem;
+  margin: auto;
+  max-width: 60rem;
+  width: 90%;
   border-radius: 18px;
   background-image: linear-gradient(135deg,
     #0b1220,
@@ -93,6 +95,8 @@ body {
   border: none;
   color: white;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 .hero-title {
@@ -111,13 +115,33 @@ body {
 }
 
 /* ================================
-    FILTER
+    FILTER SECTION
 ================================ */
+.filter {
+  padding: 1rem 2rem;
+}
 
+.filter-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.filter-nav a {
+  border: 2px solid;
+  border-radius: var(--radius);
+  padding: 0.6rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.filter-nav a:hover {
+  color: var(--hover);
+}
 
 
 /* ================================
-   4. BUTTON (Animations + Transitions)
+   HERO BUTTON (Animations + Transitions)
 ================================ */
 .btn-primary {
   padding: 0.8rem 2rem;
@@ -128,7 +152,7 @@ body {
   color: white;
   cursor: pointer;
   transition: background 0.8s, transform 0.8s;
-  animation: fadeInUp 1s ease;
+  animation: popIn 0.5s ease-out;
 }
 
 .btn-primary:hover {
@@ -137,32 +161,31 @@ body {
 }
 
 /* Animation */
-@keyframes fadeInUp {
+@keyframes popIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: scale(0.1);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
 }
 
 /* ================================
-   5. FEATURES SECTION
+    FEATURES SECTION
 ================================ */
 .features {
-  padding: 4rem 2rem;
-  text-align: center;
+  padding: 0 2rem;
 }
 
 .section-title {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* ================================
-   6. CSS GRID (Responsive)
+    CSS GRID (Responsive)
 ================================ */
 .grid {
   display: grid;
@@ -184,15 +207,8 @@ body {
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  height: 6px;
-  width: 100%;
-  background: var(--accent);
-  top: 0;
-  left: -100%;
-  transition: left 0.3s ease;
+.card p {
+  margin: 0.3rem;
 }
 
 .card:hover {
@@ -209,10 +225,83 @@ body {
   color: var(--primary);
 }
 
+.sale {
+  border: 2px dotted var(--primary);
+}
+
+/* ================================
+    CARD INSIDE THINGS (button, 
+    product title, etc.)
+================================ */
+
+.product-type {
+  font-size: 1.1rem;
+  max-width: 400px;
+  width: 100%;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn-purchase {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  max-width: 400px;
+  width: 100%;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+}
+
+.btn-purchase:hover {
+  opacity: 0.7;
+}
+
+.sale-tag {
+  background-color: var(--accent);
+  border-radius: var(--radius);
+  padding: 2px 6px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 0.8rem;
+}
+
+.low-stock-tag {
+  background-color: var(--accent);
+  border-radius: var(--radius);
+  padding: 2px 6px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 0.8rem;
+}
+
+.price {
+  color: blue;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.checked {
+  color: orange;
+}
+
 /* ================================
    8. MEDIA QUERY EXAMPLE
 ================================ */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .filter-nav {
+    flex-direction: column;
+  }
+
   .hero {
     padding: 3rem 1rem;
   }
