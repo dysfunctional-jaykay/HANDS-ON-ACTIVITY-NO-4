@@ -5,9 +5,11 @@
   --bg: #fff;
   --text: #222;
   --primary: #2fd4da;
+  --secondary: #14b1979d;
   --accent: #fa7d50;
   --hover: #0fc927;
   --radius: 12px;
+  --shadow: 0 8px 18px rgba(0, 0, 0, 0.158);
 
   /* Fluid Typography */
   --title-size: clamp(1.5rem, 3vw, 2.25rem);
@@ -18,8 +20,10 @@ body.dark {
   --bg: #111;
   --text: #eee;
   --primary: #116369;
+  --secondary: #073d349d;;
   --accent: #bd4d21;
   --hover: #097517;
+  --shadow: 0 8px 18px rgba(255, 255, 255, 0.158);
 }
 
 body {
@@ -46,6 +50,20 @@ body {
   letter-spacing: 1px;
 }
 
+.login {
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login:hover {
+  background: var(--hover);
+  box-shadow: var(--shadow);
+}
+
 .toggle-theme {
   padding: 0.5rem 0.6rem;
   border-radius: var(--radius);
@@ -60,6 +78,11 @@ body {
   transform: rotate(30deg);
 }
 
+.toggle-theme:hover {
+  background: var(--hover);
+  box-shadow: var(--shadow);
+}
+
 .shopping-cart {
   padding: 0.5rem 0.6rem;
   border-radius: var(--radius);
@@ -71,6 +94,7 @@ body {
 
 .shopping-cart:hover {
   background-color: var(--hover);
+  box-shadow: var(--shadow);
 }
 
 .cart-count {
@@ -94,9 +118,24 @@ body {
     #1a2c47);
   border: none;
   color: white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  overflow: auto;
+  box-shadow: var(--shadow);
+  overflow: hidden;
   box-sizing: border-box;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(
+    circle,
+    #ff8410cc 0%, 
+    rgba(209, 0, 0, 0) 70%);
+  border-radius: 50%;
 }
 
 .hero-title {
@@ -129,10 +168,23 @@ body {
 
 .filter-nav a {
   border: 2px solid;
-  border-radius: var(--radius);
+  border-radius: 18px;
   padding: 0.6rem;
   text-decoration: none;
   color: var(--text);
+}
+
+.filter-nav a:focus-visible {
+  border: 2px solid var(--accent);
+}
+
+.filter-nav a:focus {
+  background-color: #4d4a4a7c;
+}
+
+.filter-nav a:active {
+  background-color: #313030bb;
+  border: dashed;
 }
 
 .filter-nav a:hover {
@@ -145,7 +197,7 @@ body {
 ================================ */
 .btn-primary {
   padding: 0.8rem 2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   background: var(--primary);
   border: none;
   border-radius: var(--radius);
@@ -195,9 +247,10 @@ body {
 }
 
 /* ================================
-   7. CARDS (Pseudo-element + Hover)
+    CARDS (Pseudo-element + Hover)
 ================================ */
 .card {
+  display: grid;
   background: var(--bg);
   padding: 2rem;
   border-radius: var(--radius);
@@ -205,10 +258,12 @@ body {
   position: relative;
   overflow: hidden;
   transition: transform 0.4s ease, border-color 0.4s ease;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
 .card p {
-  margin: 0.3rem;
+  margin: 0.4rem 0 0.5rem;
 }
 
 .card:hover {
@@ -225,8 +280,20 @@ body {
   color: var(--primary);
 }
 
-.sale {
-  border: 2px dotted var(--primary);
+.sale::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 5px dashed #bb1601;
+  animation: dash 0.6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dash {
+  to { 
+    border: transparent;
+  }
 }
 
 /* ================================
@@ -238,10 +305,10 @@ body {
   font-size: 1.1rem;
   max-width: 400px;
   width: 100%;
-  background: var(--primary);
+  background: var(--secondary);
   border: none;
   border-radius: var(--radius);
-  color: white;
+  color: var(--text);
   padding: 2rem;
   box-sizing: border-box;
   text-align: center;
@@ -258,14 +325,43 @@ body {
   border-radius: var(--radius);
   color: white;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
 }
 
 .btn-purchase:hover {
   opacity: 0.7;
 }
 
-.sale-tag {
+.btn-purchase:active {
   background-color: var(--accent);
+  transform: translateY(3px);
+}
+
+.btn-purchase.added {
+  background-color: var(--hover);
+  cursor: default;
+}
+
+.btn-purchase .added-text {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-purchase.added .add-to-cart {
+  opacity: 0;
+}
+
+.btn-purchase.added .added-text {
+  opacity: 1;
+}
+
+.sale-tag {
+  background-color: rgba(245, 11, 11, 0.37);
+  color: rgb(231, 34, 20);
   border-radius: var(--radius);
   padding: 2px 6px;
   position: absolute;
@@ -275,7 +371,8 @@ body {
 }
 
 .low-stock-tag {
-  background-color: var(--accent);
+  background-color: rgba(224, 151, 15, 0.507);
+  color: #7c340b;
   border-radius: var(--radius);
   padding: 2px 6px;
   position: absolute;
@@ -290,12 +387,37 @@ body {
   font-size: 1.3rem;
 }
 
+.discount {
+  font-weight: lighter;
+  font-size: 0.8rem;
+  text-decoration: line-through;
+}
+
+.card.low::after {
+  content: "Hurry few left in stock!";
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: red;
+  position: absolute;
+  bottom: 7px;
+  right: 39px;
+}
+
 .checked {
   color: orange;
 }
 
 /* ================================
-   8. MEDIA QUERY EXAMPLE
+    FOOTER
+================================ */
+.footer {
+  text-align: center;
+  font-size: var(--subtitle-size);
+}
+
+/* ================================
+    MEDIA QUERY EXAMPLE
 ================================ */
 @media (max-width: 640px) {
   .filter-nav {

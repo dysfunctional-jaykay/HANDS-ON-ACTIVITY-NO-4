@@ -13,7 +13,11 @@
   <h1 class="logo">💻 TechMart</h1>
   <div>
     <button class="toggle-theme" id="toggleTheme">🌙</button>
-    <button class="shopping-cart" id="shopCart">🛒 Cart <span class="cart-count" id="count">0</span></button>
+    <button class="login" onclick="nonFunctional()">🔑 Login</button>
+    <button class="shopping-cart" id="shopCart" onclick="decreaseCount()">
+      🛒 Cart 
+      <span class="cart-count" id="count">0</span>
+    </button>
   </div>
 </header>
 
@@ -22,20 +26,20 @@
     <p class="hero-desc">
         Up to 40% off on selected laptops, headphones, and accessories. Limited stock only!
     </p>
-    <button class="btn-primary">Shop Deals</button>
+    <button class="btn-primary" onclick="window.location.href='#featured'">Shop Deals</button>
 </section>
 
 <section class="filter">
     <h2 class="section-title">Filter By:</h2>
     <nav class="filter-nav">
-      <a href="javascript:alert('Not functional');">All</a>
-      <a href="javascript:alert('Not functional');">Laptops</a>
-      <a href="javascript:alert('Not functional');">Headphones</a>
-      <a href="javascript:alert('Not functional');">Accessories</a>
+      <a href="#" onclick="nonFunctional()">All</a>
+      <a href="#" onclick="nonFunctional()">Laptops</a>
+      <a href="#" onclick="nonFunctional()">Headphones</a>
+      <a href="#" onclick="nonFunctional()">Accessories</a>
     </nav>
 </section>
 
-<section class="features">
+<section class="features" id="featured">
   <h2 class="section-title">Featured Products</h2>
 
   <div class="grid">
@@ -44,14 +48,19 @@
         <span class="sale-tag">
           Sale
         </span>
-        Headset
+        Laptop
       </div>
-      <h3>Noise-Canceling Headphones</h3>
+      <h3>Ultrabook Pro 14"</h3>
       <p>
-        Wireless • 30h battery • Fast charge
+        Intel i7 • 16GB RAM • 512GB SSD
       </p>
       <p>
-        <span class="price">₱ 3,499</span>
+        <span class="price">
+          ₱ 54,990
+        </span>
+        <span class="discount">
+          ₱ 64,990
+        </span>
       </p>
       <p>
         <span class="fa fa-star checked"></span>
@@ -59,9 +68,12 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        (4.8)
+        (4.5)
       </p>
-      <button class="btn-purchase">Add to Cart</button>
+      <button class="btn-purchase" onclick="addToCart(this), increaseCount()">
+        <span class="add-to-cart">Add to Cart</span>
+        <span class="added-text">&#10004; Added</span>
+      </button>
     </div>
 
     <div class="card">
@@ -81,17 +93,20 @@
         <span class="fa fa-star"></span>
         (4.8)
       </p>
-      <button class="btn-purchase">Add to Cart</button>
+      <button class="btn-purchase" onclick="addToCart(this), increaseCount()">
+        <span class="add-to-cart">Add to Cart</span>
+        <span class="added-text">&#10004; Added</span>
+      </button>
     </div>
 
     <div class="card">
-      <div class="product-type">Headset</div>
-      <h3>Noise-Canceling Headphones</h3>
+      <div class="product-type">Mouse</div>
+      <h3>Ergonomic Wireless Mouse</h3>
       <p>
-        Wireless • 30h battery • Fast charge
+        Silent Click • 2.4 GHz • USB-C
       </p>
       <p>
-        <span class="price">₱ 3,499</span>
+        <span class="price">₱ 799</span>
       </p>
       <p>
         <span class="fa fa-star checked"></span>
@@ -99,24 +114,27 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        (4.8)
+        (4.2)
       </p>
-      <button class="btn-purchase">Add to Cart</button>
+      <button class="btn-purchase" onclick="addToCart(this), increaseCount()">
+        <span class="add-to-cart">Add to Cart</span>
+        <span class="added-text">&#10004; Added</span>
+      </button>
     </div>
 
-    <div class="card">
+    <div class="card low">
       <div class="product-type">
         <span class="low-stock-tag">
           Low Stock
         </span>
-        Headset
+        Keyboard
       </div>
-      <h3>Noise-Canceling Headphones</h3>
+      <h3>Mechanical Keyboard (RGB)</h3>
       <p>
-        Wireless • 30h battery • Fast charge
+        Blue switches • RGB backlight
       </p>
       <p>
-        <span class="price">₱ 3,499</span>
+        <span class="price">₱ 2,199</span>
       </p>
       <p>
         <span class="fa fa-star checked"></span>
@@ -124,22 +142,66 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        (4.8)
+        (4.0)
       </p>
-      <button class="btn-purchase">Add to Cart</button>
-      <p style="text-align: right;">Hurry few left in stock!</p>
+      <button class="btn-purchase" onclick="addToCart(this), increaseCount()">
+        <span class="add-to-cart">Add to Cart</span>
+        <span class="added-text">&#10004; Added</span>
+      </button>
     </div>
   </div>
 </section>
 
-<footer>
-
+<footer class="footer">
+  <hr>
+  &copy; 2026 TechMart Online Store
+  <p>
+  </p>
 </footer>
 
 <script>
   document.getElementById("toggleTheme").onclick = function () {
     document.body.classList.toggle("dark");
   };
+
+  function nonFunctional() {
+    alert('Not functional');
+  }
+
+  function addToCart(buttonElement) {
+    // Prevent repeated clicks while the animation happens
+    if (buttonElement.classList.contains('added')) {
+        return;
+    }
+
+    // Add the 'added' class to change the appearance
+    buttonElement.classList.add('added');
+
+    setTimeout(() => {
+        buttonElement.classList.remove('added');
+    }, 5000); // Reverts after 5 seconds
+  }
+
+  let count = 0;
+
+  function updateCount() {
+    document.getElementById("count").innerHTML = count;
+  } 
+
+  function increaseCount(){
+    count++;
+    updateCount();
+  }
+
+  function decreaseCount(){
+    if (count <= 0){
+      return;
+    }
+
+    count--;
+    updateCount();
+  }
+
 </script>
 
 </body>
